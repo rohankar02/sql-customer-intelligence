@@ -1,0 +1,3 @@
+# Ignore the dashboard folder for language statistics
+dashboard/* linguist-documentation=true
+*.html linguist-detectable=false
