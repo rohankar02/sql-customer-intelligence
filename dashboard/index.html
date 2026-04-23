@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Intelligence Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Public Sans', sans-serif; background: #f8f9fa; margin: 0; display: flex; }
+        .sidebar { width: 220px; background: #2c3e50; color: white; height: 100vh; padding: 20px; }
+        .main { flex: 1; padding: 40px; }
+        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        h1 { margin-top: 0; color: #333; }
+        .tier { font-weight: bold; color: gold; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>SQL Insights</h2>
+        <p>Customer IQ v1.0</p>
+    </div>
+    <div class="main">
+        <h1>Customer Intelligence Dashboard</h1>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Revenue by Tier</h3>
+                <canvas id="tierChart"></canvas>
+            </div>
+            <div class="card">
+                <h3>Top Customers (Total Spend)</h3>
+                <canvas id="topCustChart"></canvas>
+            </div>
+            <div class="card">
+                <h3>Monthly Retention</h3>
+                <canvas id="retentionChart"></canvas>
+            </div>
+            <div class="card">
+                <h3>Days Between Orders</h3>
+                <canvas id="repeatChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock data from our SQL queries
+        new Chart(document.getElementById('tierChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Gold', 'Silver', 'Bronze'],
+                datasets: [{ data: [65000, 32000, 15000], backgroundColor: ['#FFD700', '#C0C0C0', '#CD7F32'] }]
+            }
+        });
+
+        new Chart(document.getElementById('topCustChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Cust_42', 'Cust_11', 'Cust_98', 'Cust_5'],
+                datasets: [{ label: 'Total Spend', data: [8200, 7600, 7100, 6800], backgroundColor: '#3498db' }]
+            }
+        });
+
+        new Chart(document.getElementById('retentionChart'), {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+                datasets: [{ label: 'Retention %', data: [100, 45, 38, 42], borderColor: '#2ecc71', tension: 0.3 }]
+            }
+        });
+
+        new Chart(document.getElementById('repeatChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Gold', 'Regular'],
+                datasets: [{ label: 'Days Gap', data: [14, 45], backgroundColor: '#9b59b6' }]
+            }
+        });
+    </script>
+</body>
+</html>
